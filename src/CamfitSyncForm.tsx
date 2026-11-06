@@ -34,6 +34,7 @@ export function CamfitSyncForm({
   const [profile, setProfile] = useState<CamfitProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [confirmationReason, setConfirmationReason] = useState("");
   const [attempt, setAttempt] = useState(0);
   const [stage, setStage] = useState<CamfitStage>("opening");
   const [result, setResult] = useState<
@@ -142,6 +143,13 @@ export function CamfitSyncForm({
             "캠핏 명단에 제목 행이 없어요. 기존 예약은 유지했어요.",
           );
         const config = prepareCamfitProfile(data, received, previous);
+        setConfirmationReason(
+          previous && received.clickedLabel !== previous.exportLabel
+            ? received.clickedLabel
+              ? "이전에 연결한 내보내기와 달라요. 파일 내용을 확인한 뒤 연결해 주세요."
+              : "어떤 내보내기로 받은 파일인지 확인하지 못했어요. 파일 내용을 확인한 뒤 연결해 주세요."
+            : "",
+        );
         setTable(data);
         setDownload(received);
         setProfile(config);
@@ -154,6 +162,7 @@ export function CamfitSyncForm({
           preview &&
           !preview.errors.length &&
           received.route === previous.route &&
+          received.clickedLabel === previous.exportLabel &&
           received.exportLabels.includes(previous.exportLabel)
         ) {
           await commit(data, { ...previous, route: received.route });
@@ -261,6 +270,9 @@ export function CamfitSyncForm({
   };
   return (
     <form onSubmit={(e) => e.preventDefault()}>
+      {confirmationReason && (
+        <p className="notice amber">{confirmationReason}</p>
+      )}
       <p className="notice blue">
         첫 명단의 열과 상품·예약 상태를 확인해 주세요. 한 번 연결하면 같은
         형식의 명단은 바로 동기화해요.

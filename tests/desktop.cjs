@@ -547,7 +547,7 @@ const assert = require("node:assert/strict");
     await page.getByRole("button", { name: "설정", exact: true }).click();
     const loginWindowPromise = app.waitForEvent("window");
     await page.getByRole("button", { name: "캠핏 연결", exact: true }).click();
-    const loginPage = await loginWindowPromise;
+    let loginPage = await loginWindowPromise;
     await loginPage.getByText("캠핏 로그인 창 격리 검증").waitFor();
     assert.equal(
       await loginPage.evaluate(() => typeof window.camp),
@@ -597,9 +597,11 @@ const assert = require("node:assert/strict");
       await app.evaluate((_electron, version) => {
         globalThis.sopungTestExportStage = version;
       }, stage);
+      const reopened = app.waitForEvent("window");
       await page
         .getByRole("button", { name: "캠핏 동기화", exact: true })
         .click();
+      loginPage = await reopened;
       await page
         .getByRole("heading", { name: "예약 목록을 동기화했어요", exact: true })
         .waitFor();
@@ -639,9 +641,11 @@ const assert = require("node:assert/strict");
     await app.evaluate(() => {
       globalThis.sopungTestExportStage = 3;
     });
+    const failureWindow = app.waitForEvent("window");
     await page
       .getByRole("button", { name: "캠핏 동기화", exact: true })
       .click();
+    loginPage = await failureWindow;
     await page
       .getByRole("dialog")
       .getByRole("alert")

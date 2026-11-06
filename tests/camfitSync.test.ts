@@ -265,6 +265,40 @@ test("창 로딩이 끝나기 전 도착한 XLSX도 수신하고 진행 상태�
   }
 });
 
+test("취소 후 새 창에서 재연결하면 이전 창의 늦은 파일을 수신하지 않음", async () => {
+  const f = connectorFixture();
+  const current = Object.assign(new EventEmitter(), {
+    isDestroyed: () => false,
+    webContents: { ...f.window.webContents },
+  });
+  try {
+    const first = f.connector.download();
+    await nextTurn();
+    f.connector.cancel();
+    await assert.rejects(first, /중단/);
+    f.connector.getWindow = async () => current;
+    const retry = f.connector.download();
+    await nextTurn();
+    const stale = new Item("이전요청.xlsx");
+    f.isolated.emit("will-download", {}, stale, f.window.webContents);
+    assert.equal(stale.file, "");
+    assert.ok(f.connector.job);
+    const fresh = new Item("현재요청.xlsx");
+    f.isolated.emit("will-download", {}, fresh, current.webContents);
+    writeFileSync(fresh.file, "current-request-payload");
+    fresh.state = "completed";
+    fresh.emit("done", {}, "completed");
+    const received = await retry;
+    assert.equal(received.fileName, "현재요청.xlsx");
+    assert.equal(
+      Buffer.from(received.base64, "base64").toString(),
+      "current-request-payload",
+    );
+  } finally {
+    f.clean();
+  }
+});
+
 test("로그인 만료 뒤 인증된 화면이 확인되면 저장한 예약 경로로 한 번 복귀", async () => {
   const f = connectorFixture(5000);
   let url = "https://admin.camfit.co.kr/login";

@@ -1,6 +1,6 @@
 {
   "name": "sopung-camp-manager",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "private": true,
   "description": "소풍캠핑장 자리 배정과 예약 관리",
   "author": "Sopung Camp",

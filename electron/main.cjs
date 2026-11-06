@@ -13,7 +13,7 @@ const crypto = require("crypto");
 const { pathToFileURL } = require("url");
 const { Repository, atomicWrite, MAX_BYTES } = require("./repository.cjs");
 const { readAuth } = require("./auth.cjs");
-const { createLoginWindow } = require("./camfit.cjs");
+const { createLoginWindow, allowedNavigation } = require("./camfit.cjs");
 const { CamfitSync } = require("./camfit-sync.cjs");
 
 app.setName("Sopung Camp");
@@ -146,13 +146,19 @@ else {
       },
       true,
     );
-    const openCamfit = async (route, beforeLoad = () => {}) => {
+    const openCamfit = async (route, beforeLoad) => {
       if (camfitWindow && !camfitWindow.isDestroyed()) {
-        camfitWindow.show();
-        camfitWindow.focus();
-        beforeLoad(camfitWindow);
-        if (route) await camfitWindow.loadURL(route);
-        return camfitWindow;
+        if (!beforeLoad) {
+          // 진행 중인 창을 보는 요청은 새 다운로드 작업을 시작하지 않는다.
+          camfitWindow.show();
+          camfitWindow.focus();
+          return camfitWindow;
+        }
+        // 작업마다 webContents를 분리한다. 취소한 요청의 늦은 파일이 새 작업에
+        // 들어오지 않도록 이전 창을 닫되 로그인 세션과 현재 조회 주소는 유지한다.
+        const current = camfitWindow.webContents.getURL();
+        if (!route && allowedNavigation(current)) route = current;
+        camfitWindow.destroy();
       }
       const login = createLoginWindow(
         { BrowserWindow, session },

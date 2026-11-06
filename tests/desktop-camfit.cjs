@@ -24,7 +24,7 @@ const assert = require("node:assert/strict");
     await page.getByRole("button", { name: "설정", exact: true }).click();
     await app.evaluate(
       ({ session }, files) => {
-        globalThis.sopungAutoStage = 0;
+        globalThis.sopungAutoStage = 4;
         globalThis.sopungAutoExpired = false;
         session
           .fromPartition("persist:sopung-camfit")
@@ -40,10 +40,11 @@ const assert = require("node:assert/strict");
                 '<button>로그아웃</button><a href="/reservations">예약 목록</a>';
             } else {
               const name = stage === 3 ? "예약.xls" : "예약.xlsx";
-              const encoded = files[stage === 3 ? 0 : stage];
+              const encoded = files[stage >= 3 ? 0 : stage];
+              const delay = stage === 4 ? 5000 : 0;
               html =
                 "<button>로그아웃</button><h1>시험 예약 목록</h1><table><thead><tr><th>예약번호</th><th>입실일</th></tr></thead></table>" +
-                `<a href="/export" onclick="event.preventDefault(); window.exportClicks=(window.exportClicks||0)+1; const a=document.createElement('a'); a.href='data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${encoded}'; a.download='${name}'; document.body.append(a); a.click(); a.remove();">엑셀 다운로드</a>`;
+                `<a href="/export" onclick="event.preventDefault(); window.exportClicks=(window.exportClicks||0)+1; setTimeout(() => { const a=document.createElement('a'); a.href='data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,${encoded}'; a.download='${name}'; document.body.append(a); a.click(); a.remove(); }, ${delay});">엑셀 다운로드</a>`;
             }
             callback({
               mimeType: "text/html",
@@ -60,7 +61,16 @@ const assert = require("node:assert/strict");
 
     const opened = app.waitForEvent("window");
     await page.getByRole("button", { name: "캠핏 연결", exact: true }).click();
-    const camfit = await opened;
+    let camfit = await opened;
+    const reconnect = async (buttonName) => {
+      const previous = camfit;
+      const closed = previous.waitForEvent("close");
+      const opened = app.waitForEvent("window");
+      await page.getByRole("button", { name: buttonName, exact: true }).click();
+      camfit = await opened;
+      await closed;
+      assert.notEqual(camfit, previous);
+    };
     await camfit.getByRole("heading", { name: "시험 캠핏 로그인" }).waitFor();
     await page
       .getByRole("status")
@@ -70,9 +80,34 @@ const assert = require("node:assert/strict");
     await camfit.getByRole("button", { name: "로그인", exact: true }).click();
     // 이후 예약 메뉴와 내보내기 버튼은 시험 코드가 누르지 않는다.
     await page
+      .getByRole("status")
+      .filter({ hasText: "내보내기를 실행했어요. 파일을 기다리고 있어요" })
+      .waitFor();
+    await camfit.evaluate(() =>
+      localStorage.setItem("synthetic-session", "preserved"),
+    );
+    const pendingWindow = camfit;
+    await page
+      .getByRole("button", { name: "캠핏 창 보기", exact: true })
+      .click();
+    assert.equal(pendingWindow.isClosed(), false);
+    assert.equal(app.windows().length, 2);
+    await page
+      .getByRole("button", { name: "동기화 중단", exact: true })
+      .click();
+    await app.evaluate(() => {
+      globalThis.sopungAutoStage = 0;
+    });
+    // 첫 파일 확인 전 중단한 내보내기의 늦은 응답은 다음 작업과 창을 공유하지 않는다.
+    await reconnect("캠핏 연결");
+    await page
       .getByRole("button", { name: "연결하고 동기화", exact: true })
       .waitFor();
     assert.equal(new URL(camfit.url()).pathname, "/reservations");
+    assert.equal(
+      await camfit.evaluate(() => localStorage.getItem("synthetic-session")),
+      "preserved",
+    );
     assert.equal(await camfit.evaluate(() => window.exportClicks), 1);
     assert.equal(
       (await page.evaluate(() => window.camp.load())).reservations.length,
@@ -94,9 +129,7 @@ const assert = require("node:assert/strict");
     await app.evaluate(() => {
       globalThis.sopungAutoExpired = true;
     });
-    await page
-      .getByRole("button", { name: "캠핏 동기화", exact: true })
-      .click();
+    await reconnect("캠핏 동기화");
     await camfit.getByRole("heading", { name: "시험 캠핏 로그인" }).waitFor();
     await page
       .getByRole("status")
@@ -121,9 +154,7 @@ const assert = require("node:assert/strict");
       await app.evaluate((_electron, value) => {
         globalThis.sopungAutoStage = value;
       }, stage);
-      await page
-        .getByRole("button", { name: "캠핏 동기화", exact: true })
-        .click();
+      await reconnect("캠핏 동기화");
       await page
         .getByRole("heading", { name: "예약 목록을 동기화했어요", exact: true })
         .waitFor();
@@ -144,9 +175,7 @@ const assert = require("node:assert/strict");
     await app.evaluate(() => {
       globalThis.sopungAutoStage = 3;
     });
-    await page
-      .getByRole("button", { name: "캠핏 동기화", exact: true })
-      .click();
+    await reconnect("캠핏 동기화");
     await page
       .getByRole("dialog")
       .getByRole("alert")
@@ -163,7 +192,7 @@ const assert = require("node:assert/strict");
     await app.evaluate(() => {
       globalThis.sopungAutoStage = 2;
     });
-    await page.getByRole("button", { name: "다시 연결", exact: true }).click();
+    await reconnect("다시 연결");
     await page
       .getByRole("heading", { name: "예약 목록을 동기화했어요", exact: true })
       .waitFor();
@@ -171,9 +200,7 @@ const assert = require("node:assert/strict");
     await app.evaluate(() => {
       globalThis.sopungAutoExpired = true;
     });
-    await page
-      .getByRole("button", { name: "캠핏 동기화", exact: true })
-      .click();
+    await reconnect("캠핏 동기화");
     await page
       .getByRole("status")
       .filter({ hasText: "캠핏 창에서 로그인해 주세요" })
@@ -190,7 +217,7 @@ const assert = require("node:assert/strict");
     );
     assert.deepEqual(errors, []);
     console.log(
-      "Electron 22 / Chromium 108: 연결 시작→모의 로그인→예약 메뉴 탐색→XLSX 자동 수신→첫 열 확인→저장, 세션 만료 복귀·반복/변경/취소·오류 보존·재시도·중단 통과 (실제 캠핏·Windows 미검증)",
+      "Electron 22 / Chromium 108: 연결 시작→모의 로그인→예약 메뉴 탐색→XLSX 자동 수신→첫 열 확인→저장, 작업별 창 분리·영속 세션 보존·첫 연결 중단 후 재연결·세션 만료 복귀·반복/변경/취소·오류 보존·재시도·중단 통과 (실제 캠핏·Windows 미검증)",
     );
   } finally {
     if (app) await app.close();
