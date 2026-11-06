@@ -1,6 +1,6 @@
 {
   "name": "sopung-camp-manager",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "private": true,
   "description": "소풍캠핑장 자리 배정과 예약 관리",
   "author": "Sopung Camp",
@@ -14,7 +14,8 @@
     "desktop": "npm run build && electron .",
     "test": "tsx --test tests/*.test.ts",
     "test:ui": "playwright test",
-    "test:desktop": "node tests/desktop.cjs",
+    "test:desktop": "node tests/desktop.cjs && node tests/desktop-camfit.cjs",
+    "test:camfit-desktop": "node tests/desktop-camfit.cjs",
     "format": "prettier --write src electron tests package.json tsconfig.json vite.config.ts playwright.config.ts",
     "format:check": "prettier --check src electron tests package.json tsconfig.json vite.config.ts playwright.config.ts",
     "dist:win": "npm run build && electron-builder --win nsis --x64 --ia32 --publish never"

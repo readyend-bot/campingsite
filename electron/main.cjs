@@ -146,10 +146,11 @@ else {
       },
       true,
     );
-    const openCamfit = async (route) => {
+    const openCamfit = async (route, beforeLoad = () => {}) => {
       if (camfitWindow && !camfitWindow.isDestroyed()) {
         camfitWindow.show();
         camfitWindow.focus();
+        beforeLoad(camfitWindow);
         if (route) await camfitWindow.loadURL(route);
         return camfitWindow;
       }
@@ -157,6 +158,7 @@ else {
         { BrowserWindow, session },
         window,
         route,
+        beforeLoad,
       );
       camfitWindow = login.window;
       camfitWindow.on("closed", () => {
@@ -182,6 +184,7 @@ else {
       openCamfit,
     );
     handle("camp:camfit-profile", () => camfitSync.profile());
+    handle("camp:camfit-progress", () => camfitSync.status());
     handle("camp:camfit-download", () => camfitSync.download());
     handle("camp:camfit-profile-save", (profile) =>
       camfitSync.saveProfile(profile),

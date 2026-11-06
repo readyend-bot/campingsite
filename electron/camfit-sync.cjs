@@ -3,6 +3,12 @@ const path = require("path");
 const os = require("os");
 const { atomicWrite } = require("./repository.cjs");
 const { allowedNavigation } = require("./camfit.cjs");
+const {
+  safeRoute,
+  exportLabel,
+  inspectionScript,
+  metadataScript,
+} = require("./camfit-page.cjs");
 
 const MAX_BYTES = 8 * 1024 * 1024;
 const FIELDS = [
@@ -25,22 +31,6 @@ const REQUIRED = [
   "kind",
   "status",
 ];
-function safeRoute(value) {
-  if (!allowedNavigation(value)) return null;
-  const url = new URL(value);
-  // 필터·인증 쿼리는 저장하지 않는다. 해시 라우터의 경로만 보관한다.
-  const hash = /^#\/[\w/.-]*$/.test(url.hash) ? url.hash : "";
-  return url.origin + url.pathname + hash;
-}
-function exportLabel(value) {
-  return (
-    typeof value === "string" &&
-    value.length <= 80 &&
-    /^(?:엑셀|excel|csv)(?:\s*(?:파일|로))?(?:\s*(?:다운로드|내려받기|내보내기|저장))?$|^(?:예약|예약\s*(?:내역|목록|명단))\s*(?:엑셀\s*)?(?:다운로드|내려받기|내보내기)$/i.test(
-      value.trim(),
-    )
-  );
-}
 function validProfile(value) {
   if (
     !value ||
@@ -91,24 +81,12 @@ function validProfile(value) {
   );
 }
 
-// 공식 화면의 내보내기 조작만 사용한다. API·비밀번호·인증 토큰을 읽지 않는다.
-const pageHelpers = `
-  const eligible = ${exportLabel.toString()};
-  const caption = el => (el.getAttribute('aria-label') || el.innerText || el.textContent || '').replace(/\\s+/g, ' ').trim();
-  const visible = el => !el.disabled && el.getAttribute('aria-disabled') !== 'true' && el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden' && getComputedStyle(el).display !== 'none';
-  const controls = 'button,[role="button"],[role="menuitem"],a[download],a[href]';
-  const candidates = () => Array.from(document.querySelectorAll(controls)).filter(el => visible(el) && eligible(caption(el)));
-  if (!window.__sopungExportListener) {
-    window.__sopungExportListener = true;
-    document.addEventListener('click', event => {
-      const el = event.target instanceof Element && event.target.closest(controls);
-      if (el && eligible(caption(el))) window.__sopungLastExport = { label: caption(el), time: Date.now() };
-    }, true);
-  }
-`;
-
 function timeoutMessage(job) {
   const reason = {
+    login:
+      "캠핏 로그인이 아직 끝나지 않았어요. 캠핏 창에서 로그인과 추가 인증을 마친 뒤 다시 연결해 주세요.",
+    navigating:
+      "예약 목록으로 이동을 마치지 못했어요. 캠핏 창에서 예약 목록을 열고 다시 연결해 주세요.",
     "first-connection":
       "캠핏 첫 연결이 아직 끝나지 않았어요. 로그인 후 예약 목록에서 CSV·XLSX 내보내기를 직접 눌러 주세요.",
     "different-route":
@@ -150,6 +128,9 @@ class CamfitSync {
     } catch {
       return null;
     }
+  }
+  status() {
+    return { stage: this.job?.stage || "idle" };
   }
   saveProfile(value) {
     if (!validProfile(value))
@@ -207,67 +188,109 @@ class CamfitSync {
         item: null,
         attempted: false,
         checking: false,
-        stage: profile ? "opening" : "first-connection",
+        returnedToRoute: false,
+        navigations: 0,
+        stage: "opening",
       };
       this.job = job;
       job.timer = setTimeout(
         () => this.finish(job, new Error(timeoutMessage(job))),
         this.timeout,
       );
+      const inspect = async () => {
+        const window = job.window;
+        if (
+          this.job !== job ||
+          job.checking ||
+          job.item ||
+          job.attempted ||
+          !window ||
+          window.isDestroyed() ||
+          window.webContents.isLoadingMainFrame?.() ||
+          !allowedNavigation(window.webContents.getURL())
+        )
+          return;
+        job.checking = true;
+        try {
+          const sameRoute =
+            profile && safeRoute(window.webContents.getURL()) === profile.route;
+          const options = {
+            label: sameRoute ? profile.exportLabel : null,
+            route: profile?.route || null,
+          };
+          const inspection = await window.webContents.executeJavaScript(
+            inspectionScript(options),
+          );
+          if (this.job !== job || job.item || inspection.blocked) return;
+          if (inspection.login) {
+            job.stage = "login";
+            return;
+          }
+          if (profile && !sameRoute) {
+            if (inspection.authenticated && !job.returnedToRoute) {
+              job.returnedToRoute = true;
+              job.stage = "navigating";
+              await window.loadURL(profile.route);
+            } else job.stage = "different-route";
+            return;
+          }
+          if (profile || inspection.booking) {
+            if (inspection.matches === 1) {
+              // 클릭 후 화면이 전환되어 실행 결과를 받지 못해도 중복 실행하지 않는다.
+              job.attempted = true;
+              job.stage = "waiting-file";
+              const action = await window.webContents.executeJavaScript(
+                inspectionScript({
+                  ...options,
+                  action: "export",
+                  label: profile?.exportLabel || inspection.label,
+                }),
+              );
+              if (this.job !== job || job.item) return;
+              if (!action.clicked) {
+                job.attempted = false;
+                job.stage = action.login ? "login" : "checking";
+              }
+            } else
+              job.stage =
+                inspection.matches > 1 ? "duplicate-buttons" : "missing-button";
+            return;
+          }
+          // 첫 연결에는 확인 가능한 예약 메뉴 링크만 사용하고 두 단계 이상 추측하지 않는다.
+          if (inspection.navigationMatches === 1 && job.navigations < 2) {
+            job.navigations++;
+            job.stage = "navigating";
+            await window.webContents.executeJavaScript(
+              inspectionScript({ action: "navigate" }),
+            );
+          } else job.stage = "first-connection";
+        } catch {
+          // 클릭을 요청한 뒤 생긴 오류는 다운로드를 기다린다. 같은 버튼을 다시 누르지 않는다.
+          if (this.job === job && !job.item && !job.attempted)
+            job.stage = "checking";
+        } finally {
+          job.checking = false;
+        }
+      };
+      const attach = (window) => {
+        if (this.job !== job || job.window) return;
+        job.window = window;
+        job.closed = () =>
+          this.finish(
+            job,
+            new Error(
+              "캠핏 창을 닫아 동기화를 중단했어요. 기존 예약은 유지했어요.",
+            ),
+          );
+        window.once("closed", job.closed);
+        job.poll = setInterval(() => void inspect(), 700);
+      };
       void (async () => {
         try {
-          const window = await this.getWindow(profile?.route);
+          // 창의 첫 loadURL 완료 전부터 파일을 받는다. 빠른 자동 다운로드도 놓치지 않는다.
+          const window = await this.getWindow(profile?.route, attach);
           if (this.job !== job) return;
-          job.window = window;
-          job.stage = profile ? "checking" : "first-connection";
-          job.closed = () =>
-            this.finish(
-              job,
-              new Error(
-                "캠핏 창을 닫아 동기화를 중단했어요. 기존 예약은 유지했어요.",
-              ),
-            );
-          window.once("closed", job.closed);
-          const inspect = async () => {
-            if (
-              this.job !== job ||
-              job.checking ||
-              job.item ||
-              window.isDestroyed() ||
-              !allowedNavigation(window.webContents.getURL())
-            )
-              return;
-            job.checking = true;
-            try {
-              const sameRoute =
-                profile &&
-                safeRoute(window.webContents.getURL()) === profile.route;
-              const label =
-                sameRoute && !job.attempted ? profile.exportLabel : null;
-              const inspection = await window.webContents.executeJavaScript(
-                `(() => { ${pageHelpers} const label = ${JSON.stringify(label)}; const buttons = candidates().filter(el => caption(el) === label); if (label && buttons.length === 1) { buttons[0].click(); return { clicked: true, matches: 1 }; } return { clicked: false, matches: buttons.length }; })()`,
-              );
-              // 페이지만 바뀌어도 이전 수신 상태를 덮어쓰지 않는다. 화면 내용·주소는 기록하지 않는다.
-              if (this.job !== job || job.item) return;
-              if (inspection.clicked) job.attempted = true;
-              job.stage = !profile
-                ? "first-connection"
-                : job.attempted
-                  ? "waiting-file"
-                  : !sameRoute
-                    ? "different-route"
-                    : inspection.matches > 1
-                      ? "duplicate-buttons"
-                      : "missing-button";
-            } catch {
-              /* 로그인·화면 전환 중에는 다음 검사에서 다시 확인한다. */
-              if (this.job === job && !job.item && !job.attempted && profile)
-                job.stage = "checking";
-            } finally {
-              job.checking = false;
-            }
-          };
-          job.poll = setInterval(() => void inspect(), 700);
+          attach(window);
           await inspect();
         } catch {
           this.finish(
@@ -315,9 +338,7 @@ class CamfitSync {
       job.file = path.join(job.directory, `reservations${extension}`);
       item.setSavePath(job.file);
       job.metadata = contents
-        .executeJavaScript(
-          `(() => { ${pageHelpers} const last = window.__sopungLastExport; return { exportLabels: [...new Set(candidates().map(caption).concat(last && Date.now() - last.time < 30000 ? [last.label] : []))], clickedLabel: last && Date.now() - last.time < 30000 ? last.label : '' }; })()`,
-        )
+        .executeJavaScript(metadataScript())
         .catch(() => ({ exportLabels: [], clickedLabel: "" }));
       item.on("updated", () => {
         if (

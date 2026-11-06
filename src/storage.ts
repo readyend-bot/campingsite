@@ -8,7 +8,7 @@ import {
   type Reservation,
   type State,
 } from "./domain";
-import type { CamfitProfile, CamfitDownload } from "./camfitSync";
+import type { CamfitProfile, CamfitDownload, CamfitStage } from "./camfitSync";
 import { bundledInitialState } from "./bundledLayout";
 const KEY = "sopung-camp-v1";
 export interface DesktopBridge {
@@ -55,6 +55,7 @@ export interface DesktopBridge {
   openFolder(): Promise<void>;
   openCampfit(): Promise<void>;
   camfitProfile(): Promise<CamfitProfile | null>;
+  camfitProgress?(): Promise<{ stage: CamfitStage }>;
   downloadCampfit(): Promise<CamfitDownload>;
   saveCamfitProfile(profile: CamfitProfile): Promise<void>;
   cancelCampfitSync(): Promise<void>;

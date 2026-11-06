@@ -2606,8 +2606,8 @@ function Settings({
         <div>
           <h2>캠핏 예약 연결</h2>
           <p>
-            캠핏 예약 목록의 CSV·XLSX 내보내기와 열 연결을 마쳐야 예약을 가져올
-            수 있어요.
+            연결을 시작하고 캠핏 창에서 로그인해 주세요. 예약 목록과 내보내기
+            버튼을 확인하면 명단을 내려받아요.
           </p>
         </div>
         <div className="row-actions">
@@ -2615,29 +2615,18 @@ function Settings({
             {camfitProfile ? "연결 설정됨" : "첫 파일 연결 필요"}
           </Tag>
           <button
-            className="button secondary"
-            disabled={!isDesktop}
-            onClick={() =>
-              void window
-                .camp!.openCampfit()
-                .catch((error) => setError(error.message))
-            }
-          >
-            캠핏 로그인
-          </button>
-          <button
             className="button primary"
             disabled={!isDesktop}
             onClick={syncCampfit}
           >
             <ArrowClockwise size={18} />
-            캠핏 동기화
+            {camfitProfile ? "캠핏 동기화" : "캠핏 연결"}
           </button>
         </div>
         <p className="helper">
-          처음 동기화할 때 캠핏 창에서 내보내기를 누르고 명단의 열을 확인해
-          주세요. 연결 후에는 동기화 버튼으로 같은 형식의 명단을 가져와요.
-          캠핏에 내보내기 기능이 있어야 사용할 수 있어요.
+          첫 파일은 열·상품·예약 상태를 확인한 뒤 연결해요. 다음부터는 같은
+          형식을 자동으로 반영해요. 화면을 구별하기 어려우면 캠핏 창에서 예약
+          목록이나 내보내기 버튼을 직접 선택해 주세요.
         </p>
         {camfitProfile?.lastSync && (
           <p className="helper">

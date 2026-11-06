@@ -142,7 +142,7 @@ class Item extends EventEmitter {
 }
 function connectorFixture(
   timeout = 1000,
-  inspection = { clicked: false, matches: 0 },
+  inspection: Record<string, unknown> = { clicked: false, matches: 0 },
 ) {
   const directory = mkdtempSync(path.join(tmpdir(), "sopung-sync-test-"));
   const isolated = new EventEmitter();
@@ -224,6 +224,102 @@ test("캠핏 창의 다운로드만 받으며 임시 파일·필터 쿼리를 �
       JSON.parse(JSON.stringify(profile)),
     );
   } finally {
+    f.clean();
+  }
+});
+
+test("창 로딩이 끝나기 전 도착한 XLSX도 수신하고 진행 상태에는 화면 내용이 없음", async () => {
+  const f = connectorFixture();
+  f.connector.dispose();
+  let release!: () => void;
+  const opening = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const connector = new CamfitSync(
+    f.directory,
+    f.isolated,
+    async (_route: string, ready: (window: typeof f.window) => void) => {
+      ready(f.window);
+      const item = new Item("첫파일.xlsx");
+      f.isolated.emit("will-download", {}, item, f.window.webContents);
+      assert.deepEqual(connector.status(), { stage: "downloading" });
+      writeFileSync(item.file, "synthetic-download-payload");
+      item.state = "completed";
+      item.emit("done", {}, "completed");
+      await opening;
+      return f.window;
+    },
+  );
+  try {
+    const received = await connector.download();
+    assert.equal(received.fileName, "첫파일.xlsx");
+    assert.equal(
+      Buffer.from(received.base64, "base64").toString(),
+      "synthetic-download-payload",
+    );
+    assert.deepEqual(connector.status(), { stage: "idle" });
+  } finally {
+    release();
+    connector.dispose();
+    f.clean();
+  }
+});
+
+test("로그인 만료 뒤 인증된 화면이 확인되면 저장한 예약 경로로 한 번 복귀", async () => {
+  const f = connectorFixture(5000);
+  let url = "https://admin.camfit.co.kr/login";
+  let returns = 0;
+  let exports = 0;
+  Object.assign(f.window, {
+    loadURL: async (route: string) => {
+      returns++;
+      url = route;
+    },
+  });
+  f.window.webContents.getURL = () => url;
+  f.window.webContents.executeJavaScript = async (script: string) => {
+    if (url.endsWith("/login")) return { login: true };
+    if (url.endsWith("/dashboard")) return { authenticated: true };
+    if (script.includes('const action = "export"')) exports++;
+    return { matches: 1, clicked: script.includes('const action = "export"') };
+  };
+  f.connector.saveProfile(prepareCamfitProfile([headers, row], download, null));
+  const request = f.connector.download();
+  try {
+    await nextTurn();
+    assert.deepEqual(f.connector.status(), { stage: "login" });
+    url = "https://admin.camfit.co.kr/dashboard";
+    await new Promise((resolve) => setTimeout(resolve, 1600));
+    assert.equal(url, download.route);
+    assert.equal(returns, 1);
+    assert.equal(exports, 1);
+    assert.deepEqual(f.connector.status(), { stage: "waiting-file" });
+  } finally {
+    f.connector.cancel();
+    await assert.rejects(request, /중단/);
+    f.clean();
+  }
+});
+
+test("내보내기를 누른 뒤 실행 결과가 끊겨도 자동으로 다시 누르지 않음", async () => {
+  const f = connectorFixture(3000);
+  let clicks = 0;
+  f.connector.saveProfile(prepareCamfitProfile([headers, row], download, null));
+  f.window.webContents.executeJavaScript = async (script: string) => {
+    if (script.includes('const action = "export"')) {
+      clicks++;
+      throw new Error("시험용 화면 전환");
+    }
+    return { matches: 1 };
+  };
+  const request = f.connector.download();
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 850));
+    assert.equal(clicks, 1);
+    assert.deepEqual(f.connector.status(), { stage: "waiting-file" });
+  } finally {
+    f.connector.cancel();
+    await assert.rejects(request, /중단/);
     f.clean();
   }
 });

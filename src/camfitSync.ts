@@ -8,6 +8,22 @@ import {
 } from "./importer";
 
 export type CamfitStatus = "reserved" | "cancelled" | "ignore";
+export const CAMFIT_PROGRESS = {
+  idle: "연결을 준비하고 있어요",
+  opening: "캠핏 창을 열고 있어요",
+  login: "캠핏 창에서 로그인해 주세요",
+  navigating: "예약 목록으로 이동하고 있어요",
+  checking: "예약 화면을 확인하고 있어요",
+  "first-connection": "캠핏 창에서 예약 목록을 열어 주세요",
+  "different-route": "캠핏 창에서 연결한 예약 목록을 확인해 주세요",
+  "missing-button": "예약 목록의 내보내기 버튼을 확인해 주세요",
+  "duplicate-buttons": "내보내기 버튼이 여러 개예요. 원하는 버튼을 눌러 주세요",
+  "waiting-file": "내보내기를 실행했어요. 파일을 기다리고 있어요",
+  downloading: "예약 파일을 내려받고 있어요",
+  reading: "내려받은 예약 파일을 검사하고 있어요",
+  saving: "예약 명단을 저장하고 있어요",
+} as const;
+export type CamfitStage = keyof typeof CAMFIT_PROGRESS;
 export interface CamfitProfile {
   version: 1;
   route: string;

@@ -26,6 +26,7 @@ contextBridge.exposeInMainWorld(
     openFolder: () => ipcRenderer.invoke("camp:open-folder"),
     openCampfit: () => ipcRenderer.invoke("camp:camfit-login"),
     camfitProfile: () => ipcRenderer.invoke("camp:camfit-profile"),
+    camfitProgress: () => ipcRenderer.invoke("camp:camfit-progress"),
     downloadCampfit: () => ipcRenderer.invoke("camp:camfit-download"),
     saveCamfitProfile: (profile) =>
       ipcRenderer.invoke("camp:camfit-profile-save", profile),

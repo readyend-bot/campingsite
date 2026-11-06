@@ -11,7 +11,12 @@ function allowedNavigation(value) {
     return false;
   }
 }
-function createLoginWindow({ BrowserWindow, session }, owner, url = LOGIN_URL) {
+function createLoginWindow(
+  { BrowserWindow, session },
+  owner,
+  url = LOGIN_URL,
+  beforeLoad = () => {},
+) {
   if (!allowedNavigation(url)) throw new Error("캠핏 주소를 확인해 주세요.");
   const isolated = session.fromPartition("persist:sopung-camfit");
   isolated.setPermissionRequestHandler((_contents, _permission, callback) =>
@@ -45,6 +50,7 @@ function createLoginWindow({ BrowserWindow, session }, owner, url = LOGIN_URL) {
     event.preventDefault(),
   );
   login.once("ready-to-show", () => login.show());
+  beforeLoad(login);
   return { window: login, loaded: login.loadURL(url) };
 }
 module.exports = { LOGIN_URL, allowedNavigation, createLoginWindow };

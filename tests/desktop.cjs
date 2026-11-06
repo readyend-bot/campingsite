@@ -546,9 +546,7 @@ const assert = require("node:assert/strict");
     );
     await page.getByRole("button", { name: "설정", exact: true }).click();
     const loginWindowPromise = app.waitForEvent("window");
-    await page
-      .getByRole("button", { name: "캠핏 로그인", exact: true })
-      .click();
+    await page.getByRole("button", { name: "캠핏 연결", exact: true }).click();
     const loginPage = await loginWindowPromise;
     await loginPage.getByText("캠핏 로그인 창 격리 검증").waitFor();
     assert.equal(
@@ -564,9 +562,6 @@ const assert = require("node:assert/strict");
     assert.equal(preferences.contextIsolation, true);
     assert.equal(preferences.sandbox, true);
     await loginPage.goto("https://admin.camfit.co.kr/reservations");
-    await page
-      .getByRole("button", { name: "캠핏 동기화", exact: true })
-      .click();
     await loginPage.waitForFunction(() => window.__sopungExportListener);
     await loginPage
       .getByRole("link", { name: "엑셀 다운로드", exact: true })
