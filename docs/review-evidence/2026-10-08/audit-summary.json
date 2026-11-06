@@ -1,0 +1,19 @@
+{
+  "full": {
+    "info": 0,
+    "low": 0,
+    "moderate": 8,
+    "high": 2,
+    "critical": 0,
+    "total": 10
+  },
+  "omitDev": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "electronIsPackagedRuntime": true
+}

@@ -1,0 +1,19 @@
+{
+  "version": "0.1.15",
+  "bytes": 144518394,
+  "sha256": "2d479a5f9301ddc8dd3ca9ae3c8f2e8ef7e59e05760a4a9a1387ae3bb2c7f38c",
+  "packages": [
+    {
+      "arch": "win-unpacked",
+      "version": "0.1.15",
+      "matchingProductFiles": 134,
+      "machine": "8664"
+    },
+    {
+      "arch": "win-ia32-unpacked",
+      "version": "0.1.15",
+      "matchingProductFiles": 134,
+      "machine": "14c"
+    }
+  ]
+}

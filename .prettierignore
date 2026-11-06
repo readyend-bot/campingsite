@@ -1,0 +1,6 @@
+node_modules
+dist
+release
+tests/fixtures
+tests/make-xlsx-fixture.py
+docs/reference

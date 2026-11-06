@@ -1,0 +1,1742 @@
+{
+  "format": "sopung-bundled-layout",
+  "version": 1,
+  "capturedOn": "2026-11-06",
+  "savedAt": "2026-10-06T09:42:55.908Z",
+  "sitePlan": "sopung-user-plan-2026-10-06-corner",
+  "sites": [
+    {
+      "id": "sopung-ga-1",
+      "label": "가1",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 64,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ga-2",
+      "label": "가2",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 53,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ga-3",
+      "label": "가3",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 42,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ga-4",
+      "label": "가4",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 31,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ga-5",
+      "label": "가5",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 20,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ga-6",
+      "label": "가6",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 20,
+        "y": 18
+      }
+    },
+    {
+      "id": "sopung-ga-7",
+      "label": "가7",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 31,
+        "y": 18
+      }
+    },
+    {
+      "id": "sopung-ga-8",
+      "label": "가8",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 42,
+        "y": 18
+      }
+    },
+    {
+      "id": "sopung-ga-9",
+      "label": "가9",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 53,
+        "y": 18
+      }
+    },
+    {
+      "id": "sopung-ga-10",
+      "label": "가10",
+      "area": "가",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 64,
+        "y": 18
+      }
+    },
+    {
+      "id": "sopung-na-1",
+      "label": "나1",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 97,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-2",
+      "label": "나2",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 91,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-3",
+      "label": "나3",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 85,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-4",
+      "label": "나4",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 79,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-5",
+      "label": "나5",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 67,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-6",
+      "label": "나6",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 61,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-7",
+      "label": "나7",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 55,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-8",
+      "label": "나8",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 49,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-9",
+      "label": "나9",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 43,
+        "y": 59
+      }
+    },
+    {
+      "id": "sopung-na-10",
+      "label": "나10",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 37,
+        "y": 90
+      }
+    },
+    {
+      "id": "sopung-na-11",
+      "label": "나11",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 31,
+        "y": 90
+      }
+    },
+    {
+      "id": "sopung-na-12",
+      "label": "나12",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 25,
+        "y": 90
+      }
+    },
+    {
+      "id": "sopung-na-13",
+      "label": "나13",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 19,
+        "y": 90
+      }
+    },
+    {
+      "id": "sopung-na-14",
+      "label": "나14",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 13,
+        "y": 90
+      }
+    },
+    {
+      "id": "sopung-na-15",
+      "label": "나15",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 7,
+        "y": 90
+      }
+    },
+    {
+      "id": "sopung-na-16",
+      "label": "나16",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 22,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-17",
+      "label": "나17",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 28,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-18",
+      "label": "나18",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 34,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-19",
+      "label": "나19",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 40,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-20",
+      "label": "나20",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 46,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-21",
+      "label": "나21",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 52,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-22",
+      "label": "나22",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 58,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-23",
+      "label": "나23",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 73,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-24",
+      "label": "나24",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 79,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-25",
+      "label": "나25",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 85,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-26",
+      "label": "나26",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 91,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-na-27",
+      "label": "나27",
+      "area": "나",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 97,
+        "y": 12
+      }
+    },
+    {
+      "id": "sopung-da-1",
+      "label": "다1",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 93,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-2",
+      "label": "다2",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 85,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-3",
+      "label": "다3",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 77,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-4",
+      "label": "다4",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 69,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-5",
+      "label": "다5",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 61,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-6",
+      "label": "다6",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 53,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-7",
+      "label": "다7",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 37,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-8",
+      "label": "다8",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 29,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-9",
+      "label": "다9",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 21,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-10",
+      "label": "다10",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 13,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-11",
+      "label": "다11",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 5,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-da-12",
+      "label": "다12",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 9,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-13",
+      "label": "다13",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 17,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-14",
+      "label": "다14",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 25,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-15",
+      "label": "다15",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 33,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-16",
+      "label": "다16",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 41,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-17",
+      "label": "다17",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 49,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-18",
+      "label": "다18",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 57,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-19",
+      "label": "다19",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 65,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-20",
+      "label": "다20",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 73,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-da-21",
+      "label": "다21",
+      "area": "다",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 81,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-ra-1",
+      "label": "라1",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 55.20084566596195,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-2",
+      "label": "라2",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 49.68076109936575,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-3",
+      "label": "라3",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 44.16067653276956,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-4",
+      "label": "라4",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 38.64059196617336,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-5",
+      "label": "라5",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 33.12050739957717,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-6",
+      "label": "라6",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 27.600422832980975,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-7",
+      "label": "라7",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 22.08033826638478,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-8",
+      "label": "라8",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 16.560253699788586,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-9",
+      "label": "라9",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 11.04016913319239,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-10",
+      "label": "라10",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 5.520084566596195,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-11",
+      "label": "라11",
+      "area": "라",
+      "kind": "glamping",
+      "archived": false,
+      "layout": {
+        "x": 5.520084566596195,
+        "y": 47
+      }
+    },
+    {
+      "id": "sopung-ra-12",
+      "label": "라12",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 5.520084566596195,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-13",
+      "label": "라13",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 17.348837209302328,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-14",
+      "label": "라14",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 22.86892177589852,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-15",
+      "label": "라15",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 28.389006342494717,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-16",
+      "label": "라16",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 33.909090909090914,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-17",
+      "label": "라17",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 39.4291754756871,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-18",
+      "label": "라18",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 44.9492600422833,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-19",
+      "label": "라19",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 50.469344608879496,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-bungalow-a",
+      "label": "방갈로 A",
+      "area": "라",
+      "kind": "bungalow",
+      "archived": false,
+      "layout": {
+        "x": 58.35517970401692,
+        "y": 10
+      }
+    },
+    {
+      "id": "sopung-ra-21",
+      "label": "라21",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 71.76109936575054,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-22",
+      "label": "라22",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 66.24101479915434,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ra-23",
+      "label": "라23",
+      "area": "라",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 60.720930232558146,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-ma-1",
+      "label": "마1",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 10,
+        "y": 90
+      }
+    },
+    {
+      "id": "sopung-ma-2",
+      "label": "마2",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 10,
+        "y": 75
+      }
+    },
+    {
+      "id": "sopung-ma-3",
+      "label": "마3",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 10,
+        "y": 60
+      }
+    },
+    {
+      "id": "sopung-ma-4",
+      "label": "마4",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 10,
+        "y": 45
+      }
+    },
+    {
+      "id": "sopung-ma-5",
+      "label": "마5",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 10,
+        "y": 30
+      }
+    },
+    {
+      "id": "sopung-ma-6",
+      "label": "마6",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 10,
+        "y": 15
+      }
+    },
+    {
+      "id": "sopung-ma-7",
+      "label": "마7",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 24,
+        "y": 0.2
+      }
+    },
+    {
+      "id": "sopung-ma-8",
+      "label": "마8",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 50,
+        "y": 0
+      }
+    },
+    {
+      "id": "sopung-ma-9",
+      "label": "마9",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 90,
+        "y": 50
+      }
+    },
+    {
+      "id": "sopung-ma-10",
+      "label": "마10",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 90,
+        "y": 65
+      }
+    },
+    {
+      "id": "sopung-ma-11",
+      "label": "마11",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 90,
+        "y": 80
+      }
+    },
+    {
+      "id": "sopung-ma-12",
+      "label": "마12",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 90,
+        "y": 95
+      }
+    },
+    {
+      "id": "sopung-ma-13",
+      "label": "마13",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 56,
+        "y": 80
+      }
+    },
+    {
+      "id": "sopung-ma-14",
+      "label": "마14",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 56,
+        "y": 65
+      }
+    },
+    {
+      "id": "sopung-ma-15",
+      "label": "마15",
+      "area": "마",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 56,
+        "y": 50
+      }
+    },
+    {
+      "id": "sopung-a-1",
+      "label": "A1",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 97,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-2",
+      "label": "A2",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 90.4,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-3",
+      "label": "A3",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 83.8,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-4",
+      "label": "A4",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 77.2,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-5",
+      "label": "A5",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 70.6,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-6",
+      "label": "A6",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 64,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-7",
+      "label": "A7",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 44,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-8",
+      "label": "A8",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 37.4,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-9",
+      "label": "A9",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 30.8,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-10",
+      "label": "A10",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 24.200000000000003,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-11",
+      "label": "A11",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 17.6,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-12",
+      "label": "A12",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 11,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-13",
+      "label": "A13",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 4.400000000000006,
+        "y": 84
+      }
+    },
+    {
+      "id": "sopung-a-14",
+      "label": "A14",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 6,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-15",
+      "label": "A15",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 13,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-16",
+      "label": "A16",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 20,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-17",
+      "label": "A17",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 27,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-18",
+      "label": "A18",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 34,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-19",
+      "label": "A19",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 41,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-20",
+      "label": "A20",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 48,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-21",
+      "label": "A21",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 55,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-22",
+      "label": "A22",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 62,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-23",
+      "label": "A23",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 69,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-24",
+      "label": "A24",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 76,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-25",
+      "label": "A25",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 83,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-a-26",
+      "label": "A26",
+      "area": "A",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 90,
+        "y": 14
+      }
+    },
+    {
+      "id": "sopung-b-1",
+      "label": "B1",
+      "area": "B",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 95,
+        "y": 25
+      }
+    },
+    {
+      "id": "sopung-b-2",
+      "label": "B2",
+      "area": "B",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 95,
+        "y": 47
+      }
+    },
+    {
+      "id": "sopung-b-3",
+      "label": "카라반 3",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 91,
+        "y": 89
+      },
+      "detail": "럭셔리"
+    },
+    {
+      "id": "sopung-b-4",
+      "label": "카라반 4",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 83.3,
+        "y": 89
+      },
+      "detail": "럭셔리"
+    },
+    {
+      "id": "sopung-b-5",
+      "label": "카라반 5",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 75.6,
+        "y": 89
+      },
+      "detail": "럭셔리"
+    },
+    {
+      "id": "sopung-b-6",
+      "label": "카라반 6",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 67.9,
+        "y": 89
+      },
+      "detail": "럭셔리"
+    },
+    {
+      "id": "sopung-b-7",
+      "label": "카라반 7",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 60.2,
+        "y": 89
+      },
+      "detail": "골든"
+    },
+    {
+      "id": "sopung-b-8",
+      "label": "카라반 8",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 52.5,
+        "y": 89
+      },
+      "detail": "스페셜3"
+    },
+    {
+      "id": "sopung-b-9",
+      "label": "카라반 9",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 44.8,
+        "y": 89
+      },
+      "detail": "럭셔리"
+    },
+    {
+      "id": "sopung-b-10",
+      "label": "카라반 10",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 37.1,
+        "y": 89
+      },
+      "detail": "스파3"
+    },
+    {
+      "id": "sopung-b-11",
+      "label": "카라반 11",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 29.4,
+        "y": 89
+      },
+      "detail": "럭셔리"
+    },
+    {
+      "id": "sopung-b-12",
+      "label": "카라반 12",
+      "area": "B",
+      "kind": "caravan",
+      "archived": false,
+      "layout": {
+        "x": 21.700000000000003,
+        "y": 89
+      },
+      "detail": "럭셔리"
+    },
+    {
+      "id": "sopung-b-bungalow-b",
+      "label": "방갈로 B",
+      "area": "B",
+      "kind": "bungalow",
+      "archived": false,
+      "layout": {
+        "x": 12.5,
+        "y": 89
+      }
+    },
+    {
+      "id": "sopung-b-14",
+      "label": "B14",
+      "area": "B",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 31,
+        "y": 7
+      }
+    },
+    {
+      "id": "sopung-b-15",
+      "label": "B15",
+      "area": "B",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 39,
+        "y": 7
+      }
+    },
+    {
+      "id": "sopung-b-16",
+      "label": "B16",
+      "area": "B",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 47,
+        "y": 7
+      }
+    },
+    {
+      "id": "sopung-b-17",
+      "label": "B17",
+      "area": "B",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 55,
+        "y": 7
+      }
+    },
+    {
+      "id": "sopung-b-18",
+      "label": "B18",
+      "area": "B",
+      "kind": "auto",
+      "archived": false,
+      "layout": {
+        "x": 63,
+        "y": 7
+      }
+    }
+  ],
+  "facilities": [
+    {
+      "id": "sopung-facility-ga-store",
+      "area": "가",
+      "label": "매점 건물",
+      "type": "store",
+      "layout": {
+        "x": 86,
+        "y": 40
+      },
+      "width": 23,
+      "height": 26
+    },
+    {
+      "id": "sopung-facility-ga-trampoline",
+      "area": "가",
+      "label": "트램펄린",
+      "type": "trampoline",
+      "layout": {
+        "x": 84,
+        "y": 84
+      },
+      "width": 19,
+      "height": 24
+    },
+    {
+      "id": "sopung-facility-na-sink",
+      "area": "나",
+      "label": "개수대",
+      "type": "sink",
+      "layout": {
+        "x": 73,
+        "y": 59
+      },
+      "width": 5.5,
+      "height": 19
+    },
+    {
+      "id": "sopung-facility-da-sink",
+      "area": "다",
+      "label": "개수대",
+      "type": "sink",
+      "layout": {
+        "x": 94,
+        "y": 14
+      },
+      "width": 9,
+      "height": 28
+    },
+    {
+      "id": "sopung-facility-ra-toilet",
+      "area": "라",
+      "label": "화장실",
+      "type": "toilet",
+      "layout": {
+        "x": 67.02959830866808,
+        "y": 10
+      },
+      "width": 5.520084566596195,
+      "height": 20
+    },
+    {
+      "id": "sopung-facility-ra-sink",
+      "area": "라",
+      "label": "개수대",
+      "type": "sink",
+      "layout": {
+        "x": 74.91543340380551,
+        "y": 10
+      },
+      "width": 5.520084566596195,
+      "height": 20
+    },
+    {
+      "id": "sopung-facility-ma-table-tennis",
+      "area": "마",
+      "label": "탁구장",
+      "type": "tableTennis",
+      "layout": {
+        "x": 82,
+        "y": 17
+      },
+      "width": 30,
+      "height": 13
+    },
+    {
+      "id": "sopung-facility-ma-shower",
+      "area": "마",
+      "label": "샤워실·화장실",
+      "type": "shower",
+      "layout": {
+        "x": 75,
+        "y": 32
+      },
+      "width": 24,
+      "height": 13
+    },
+    {
+      "id": "sopung-facility-ma-sink",
+      "area": "마",
+      "label": "개수대",
+      "type": "sink",
+      "layout": {
+        "x": 96,
+        "y": 32
+      },
+      "width": 15,
+      "height": 13
+    },
+    {
+      "id": "sopung-facility-a-toilet",
+      "area": "A",
+      "label": "화장실",
+      "type": "toilet",
+      "layout": {
+        "x": 54,
+        "y": 72
+      },
+      "width": 11,
+      "height": 22
+    },
+    {
+      "id": "sopung-facility-a-sink",
+      "area": "A",
+      "label": "개수대",
+      "type": "sink",
+      "layout": {
+        "x": 54,
+        "y": 95
+      },
+      "width": 11,
+      "height": 22
+    },
+    {
+      "id": "sopung-facility-b-toilet-sink",
+      "area": "B",
+      "label": "화장실·개수대",
+      "type": "toilet",
+      "layout": {
+        "x": 14,
+        "y": 9
+      },
+      "width": 21,
+      "height": 18
+    },
+    {
+      "id": "sopung-facility-b-recycling",
+      "area": "B",
+      "label": "분리수거장",
+      "type": "recycling",
+      "layout": {
+        "x": 14,
+        "y": 24
+      },
+      "width": 21,
+      "height": 10
+    },
+    {
+      "id": "sopung-facility-b-pool",
+      "area": "B",
+      "label": "수영장",
+      "type": "pool",
+      "layout": {
+        "x": 53,
+        "y": 47
+      },
+      "width": 32,
+      "height": 29
+    },
+    {
+      "id": "sopung-facility-ra-trampoline",
+      "area": "라",
+      "label": "트램펄린",
+      "type": "trampoline",
+      "layout": {
+        "x": 84.4,
+        "y": 0
+      },
+      "width": 7.5,
+      "height": 20,
+      "location": "approach"
+    }
+  ]
+}

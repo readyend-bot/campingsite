@@ -1,0 +1,21 @@
+{
+  "version": "0.1.13",
+  "packages": [
+    {
+      "directory": "win-unpacked",
+      "version": "0.1.13",
+      "architecture": "x64",
+      "matchingProductFiles": 134
+    },
+    {
+      "directory": "win-ia32-unpacked",
+      "version": "0.1.13",
+      "architecture": "ia32",
+      "matchingProductFiles": 134
+    }
+  ],
+  "installer": "/Users/bj/Desktop/03_Private/camping site/release/Sopung-Camp-Setup-0.1.13.exe",
+  "bytes": 144513029,
+  "mebibytes": 137.82,
+  "sha256": "1fa576ddd44dba4d4c0dcc69c8e38e1ac84af5987534d9373e281cc7ada8f307"
+}

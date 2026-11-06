@@ -1,0 +1,23 @@
+node_modules/
+dist/
+release/
+test-results/
+playwright-report/
+.DS_Store
+*.log
+
+# 로컬 운영·인증 데이터와 개인 환경 설정
+.env
+.env.*
+!.env.example
+camp-data*.json
+lock.json
+preferences.json
+camfit-sync.json
+backups/
+.codex/
+.agents/
+.aws/
+
+# 사용자 제공 사진과 조사 원본은 로컬 기획 자료로 보관
+/docs/reference/
